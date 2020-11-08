@@ -16,6 +16,10 @@ jobs:
       script:
       - git clone https://github.com/jwilder/nginx-proxy nginx-proxy
       - cd ./nginx-proxy
+      - cp Dockerfile Dockerfile.amd64
+      - cp Dockerfile Dockerfile.armv7
+      - sed -i 's~ADD.*/usr/local/bin/forego~RUN wget https://bin.equinox.io/c/ekMN3bCZFUn/forego-stable-linux-arm.tgz \&\&\\\n    tar -C /usr/local/bin -xvzf forego-stable-linux-arm.tgz \&\&\\\n    rm forego-stable-linux-arm.tgz~' Dockerfile.armv7
+      - sed -i 's~amd64~armhf~' Dockerfile.armv7
 
       - echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USERNAME}" --password-stdin
       - docker run --privileged linuxkit/binfmt:v0.6
@@ -50,6 +54,10 @@ jobs:
       script:
       - git clone https://github.com/jwilder/nginx-proxy nginx-proxy
       - cd ./nginx-proxy
+      - cp Dockerfile Dockerfile.amd64
+      - cp Dockerfile Dockerfile.armv7
+      - sed -i 's~ADD.*/usr/local/bin/forego~RUN wget https://bin.equinox.io/c/ekMN3bCZFUn/forego-stable-linux-arm.tgz \&\&\\\n    tar -C /usr/local/bin -xvzf forego-stable-linux-arm.tgz \&\&\\\n    rm forego-stable-linux-arm.tgz~' Dockerfile.armv7
+      - sed -i 's~amd64~armhf~' Dockerfile.armv7
 
       - echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USERNAME}" --password-stdin
       - docker run --privileged linuxkit/binfmt:v0.6
@@ -93,6 +101,10 @@ jobs:
       script:
       - git clone https://github.com/jwilder/nginx-proxy nginx-proxy
       - cd ./nginx-proxy
+      - cp Dockerfile Dockerfile.amd64
+      - cp Dockerfile Dockerfile.armv7
+      - sed -i 's~ADD.*/usr/local/bin/forego~RUN wget https://bin.equinox.io/c/ekMN3bCZFUn/forego-stable-linux-arm.tgz \&\&\\\n    tar -C /usr/local/bin -xvzf forego-stable-linux-arm.tgz \&\&\\\n    rm forego-stable-linux-arm.tgz~' Dockerfile.armv7
+      - sed -i 's~amd64~armhf~' Dockerfile.armv7
 
       - echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USERNAME}" --password-stdin
       - docker run --privileged linuxkit/binfmt:v0.6
